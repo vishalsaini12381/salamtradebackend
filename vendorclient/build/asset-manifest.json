@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cf0c731c.chunk.css",
+    "main.js": "/static/js/main.0820b854.chunk.js",
+    "main.js.map": "/static/js/main.0820b854.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.d40ef06a.chunk.js": "/static/js/2.d40ef06a.chunk.js",
+    "static/js/2.d40ef06a.chunk.js.map": "/static/js/2.d40ef06a.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3b454c7981604705d3ffce82174afa6e.js": "/precache-manifest.3b454c7981604705d3ffce82174afa6e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.cf0c731c.chunk.css.map": "/static/css/main.cf0c731c.chunk.css.map",
+    "static/media/plugin.css": "/static/media/materialdesignicons-webfontdf71.f89ba2d8.svg"
+  }
+}
