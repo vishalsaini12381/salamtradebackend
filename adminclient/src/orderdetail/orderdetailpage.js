@@ -98,7 +98,7 @@ class Orderdetailpage extends React.Component{
                                 <td><strong>Order Amount :</strong> ${this.state.orderDetail.amount}</td>
                               </tr>
                               <tr>
-                                <td><strong>Order Status :</strong> {(this.state.orderDetail.orderType==1) ? 'Pending':(this.state.orderDetail.orderType==2)?'Completed':'Cancel'}</td>
+                                <td><strong>Order Status :</strong> {(this.state.orderDetail.status==1) ? 'Pending':(this.state.orderDetail.status==2)?'Completed':'Cancel'}</td>
                               </tr>
                             </tbody>
                             <tbody className="col-lg-4 p-0">
@@ -179,7 +179,7 @@ class Orderdetailpage extends React.Component{
                   </div>
                 </div>
                 <div className="card ">
-                  <div className="card-header "><div className="card-title">Order Summery</div></div>
+                  <div className="card-header "><div className="card-title">Order Summary</div></div>
                   <div className="card-body">
                     <div className="table-responsive">
                       <table className="table table-bordered">

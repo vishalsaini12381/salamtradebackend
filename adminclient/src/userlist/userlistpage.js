@@ -1,9 +1,113 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './userlistpage.css';
+
+import { MDBDataTable } from 'mdbreact';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "bootstrap-css-only/css/bootstrap.min.css";
+import "mdbreact/dist/css/mdb.css";
+import "./datatable.css";
+
+
+
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import axios from 'axios';
+import $ from 'jquery';
+import swal from 'sweetalert';
+const URL = process.env.REACT_APP_LOCAL;
+
+
 class Userlistpage extends React.Component{
+
+  constructor(props){
+		super(props);
+		this.state = {
+        allUsers:[],
+		}
+  }
+
+  componentWillMount(){
+    this.fetchAllUsers();
+  }
+
+
+  fetchAllUsers(){
+
+     //console.log('{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{===>', this.props.userId)
+      axios.post(URL+'/api/admin/userList',{
+      }).then((response)=>{
+         // console.log('this.responsefdfddfdddddddddd',response.data);
+          this.setState({
+            allUsers : response.data.data,
+          })
+          
+      })
+   
+
+   
+  }
+
+
 	render()
 	{
+
+    const bodyDataArr=[];
+    
+    this.state.allUsers.map((e,i)=>{
+      var obj={
+          "name":e._id,
+          "position":e.firstName,
+          "office":e.lastName,
+          "age":e.email,
+          "date":e.mobile,
+          "salary":e.adminStatus 
+      }
+      bodyDataArr.push(obj);
+    })
+
+   const data = {
+      columns: [
+        {
+          label: 'User-Id',
+          field: 'name',
+          sort: 'asc',
+          width: 150
+        },
+        {
+          label: 'First Name',
+          field: 'position',
+          sort: 'asc',
+          width: 270
+        },
+        {
+          label: 'Last Name',
+          field: 'office',
+          sort: 'asc',
+          width: 200
+        },
+        {
+          label: 'Email',
+          field: 'age',
+          sort: 'asc',
+          width: 100
+        },
+        {
+          label: 'Mobile No',
+          field: 'date',
+          sort: 'asc',
+          width: 150
+        },
+        {
+          label: 'Status',
+          field: 'salary',
+          sort: 'asc',
+          width: 100
+        }
+      ],
+      rows: bodyDataArr
+    }
+
 		return(
         <div className="my-3 my-md-5">
           <div className="container">
@@ -18,46 +122,20 @@ class Userlistpage extends React.Component{
               <div className="col-md-12 col-lg-12">
               <div className="card">
                 <div className="card-body">
-                                  <div className="table-responsive">
-                  <table id="example" className="table table-striped table-bordered">
-                    <thead>
-                      <tr>
-                        <th className="wd-15p">User Id</th>
-                        <th className="wd-15p">User Name</th>
-                        <th className="wd-15p">Gender</th>
-                        <th className="wd-15p">Email Id</th>
-                        <th className="wd-20p">Mobile No</th>
-                        <th className="wd-20p">Address</th>
-                        <th className="wd-25p">Status</th>
-                        <th className="wd-25p">Action</th>
-                      </tr>
-                    </thead>
-                    {/* <tbody>
-                      <tr>
-                        <td>#U1001</td>
-                        <td>Mo Danish</td>
-                        <td>Male</td>
-                        <td>danish@gmail.com</td>
-                        <td>+971 3215 5487</td>
-                        <td>SDF HALL Dubai</td>
-                        <td>
-                        <div className="card-options">
-                            <label className="custom-switch m-0">
-                              <input type="checkbox" value="1" className="custom-switch-input" />
-                              <span className="custom-switch-indicator"></span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="actiontrans">
-                            <a href="/userdetail">View Detail </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody> */}
-                  </table>
+                    <div className="table-responsive">
+                  
+
+
+                    <MDBDataTable
+				      striped
+				      bordered
+				      hover
+				      data={data}
+                    />
+
+
+                    </div>
                 </div>
-                                </div>
               </div>
               </div>
             </div>
@@ -69,4 +147,14 @@ class Userlistpage extends React.Component{
 	}
 }
 
-export default Userlistpage;
+function mapstateToProps(state){
+  return{
+    authenticateState : state.inititateState.authenticateState,
+    businesscategory : state.inititateState.businesscategory,
+    businessId : state.inititateState.businessId
+  }
+}
+
+export default withRouter(connect(mapstateToProps)(Userlistpage));
+
+// export default Userlistpage;

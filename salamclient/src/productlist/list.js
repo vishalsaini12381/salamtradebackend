@@ -104,13 +104,14 @@ class List extends React.Component{
             <div className="breadcrumbs">
 			      <div className="row">
 			        <ul>
-			          <li className="home"> <a href="/" title="Go to Home Page">Home</a><span>/</span></li>
+			          <li className="home"> <a href="/" title="Go to Home Page">Home</a><span>/ Product List</span></li>
 			        </ul>
 			    </div>
 			 </div>
           </div>
           <div className="category-products">
-            <ul className="products-grid">
+          {
+              (this.state.productList[0]) ?  <ul className="products-grid">
              
          {
           //  this.state.productList > 0 ?
@@ -122,9 +123,9 @@ class List extends React.Component{
                 <div className="col-item">
                   <div className="product-image-area"> <a className="product-image" title="Sample Product" href="#"> <img  src= {e.file1}
                    className="img-responsive" style = {{height : '200px',width: '200px'}} alt="a" /> </a>
-                    <div className="hover_fly"> <a className="exclusive ajax_add_to_cart_button" href="/Shoppingcart" title="Add Cart">
+                    <div className="hover_fly"> <a className="exclusive ajax_add_to_cart_button" href={'Productdetail?product='+e._id} title="Add Cart">
                       <div><i className="icon-shopping-cart"></i><span><i className="fa fa-shopping-bag"></i> Add Cart</span></div>
-                      </a> <a className="quick-view" href="/Shoppingcart">
+                      </a> <a className="quick-view" href={'Productdetail?product='+e._id}>
                       <div><i className="icon-eye-open"></i><span><i className="fa fa-heart"></i></span></div>
                       </a> </div>
                   </div>
@@ -167,6 +168,8 @@ class List extends React.Component{
           //  </div>
          }
             </ul>
+            : <img src="./no-product.png"></img> 
+        }
           </div>
               {/* <div className="pages">
                   <ul className="pagination">

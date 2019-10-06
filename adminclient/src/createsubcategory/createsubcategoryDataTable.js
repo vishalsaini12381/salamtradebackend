@@ -33,6 +33,7 @@ class SubCategoryDataTable extends Component{
         }
 
         handleChangeSubCategory(event){
+          console.log('event.target.value',event.target.value);
           this.setState({
             Subcategory :  event.target.value
           })
@@ -53,7 +54,7 @@ class SubCategoryDataTable extends Component{
               console.log('Responsepesponse',response.data.Subcategory);
               this.setState({
                 subcategoryId : e,
-                Subcategory : response.data.Subcategory
+                Subcategory : response.data.subcategory
               })
             })
             this.toggle();
@@ -82,7 +83,7 @@ class SubCategoryDataTable extends Component{
 
           deleteSubCategory(e){
             swal({
-              title: "Are you sure?",
+              title: "Are you sure you want to delete?",
               text: "Once deleted, you will not be able to recover this imaginary file!",
               icon: "warning",
               buttons: true,
@@ -100,7 +101,7 @@ class SubCategoryDataTable extends Component{
                   return window.location = '/subcategory';
                 },2000)
               }else{
-                swal("Your imaginary file is safe!");
+                //swal("Your imaginary file is safe!");
               }
             });
            }
@@ -119,40 +120,45 @@ const header = [
 let state = this.state;
 const body = [];
   state.subcategoryList.map((e,i)=>{
+    if(e.businessId && e.businessId.businesscategory){
+      if(e.categoryId && e.categoryId.category){
       body.push({
-     'businesscategory':e.businessId.businesscategory,
-     'category' : e.categoryId.category,
-     'subcategory': e.subcategory,
-    //  'status':      
-    //  <div className="card-options">
-    //      <label className="custom-switch m-0">
-    //        <input type="checkbox" value="1" className="custom-switch-input" />
-    //        <span className="custom-switch-indicator"></span>
-    //      </label>
-    //    </div>
-    //  ,
-      'action': <div className="actiontrans" > 
-       <Link to = "#" onClick = {this.toggle} onClick = {this.editSubcategory.bind(this,e._id)} > <i className="fa fa-edit"></i></Link>
-       <Modal isOpen={this.state.modal} toggle={this.toggle} >
-          <ModalHeader toggle={this.toggle}></ModalHeader>
-          <ModalBody> 
-                <div className="form-group">
-                <label>Sub Category  </label>
-                <input type="text" className="form-control" value = {this.state.Subcategory} onChange = {this.handleChangeSubCategory} />
-                </div>      
-                <div className="form-group">
-              <button onClick = {this.updateSubCategory.bind(this)}>Update</button>
-                  </div>
+                'businesscategory':e.businessId.businesscategory,
+                'category' : e.categoryId.category,
+                'subcategory': e.subcategory,
+                //  'status':      
+                //  <div className="card-options">
+                //      <label className="custom-switch m-0">
+                //        <input type="checkbox" value="1" className="custom-switch-input" />
+                //        <span className="custom-switch-indicator"></span>
+                //      </label>
+                //    </div>
+                //  ,
+                  'action': <div className="actiontrans" > 
+                  <Link to = "#" onClick = {this.toggle} onClick = {this.editSubcategory.bind(this,e._id)} > <i className="fa fa-edit"></i></Link>
+                  <Modal isOpen={this.state.modal} toggle={this.toggle} >
+                      <ModalHeader toggle={this.toggle}></ModalHeader>
+                      <ModalBody> 
+                            <div className="form-group">
+                            <label>Sub Category  </label>
+                            <input type="text" className="form-control" value = {this.state.Subcategory} onChange = {this.handleChangeSubCategory} />
+                            </div>      
+                            <div className="form-group">
+                          <button onClick = {this.updateSubCategory.bind(this)}>Update</button>
+                              </div>
 
-           <div style={{ marginTop: 10 }}>
-         
-        </div>
-        </ModalBody>
-          <ModalFooter>
-            
-          </ModalFooter>
-        </Modal>
-       <Link to = "#"  onClick = {this.deleteSubCategory.bind(this,e._id)}  > <i className="fa fa-trash"></i></Link> </div>  });
+                      <div style={{ marginTop: 10 }}>
+                    
+                    </div>
+                    </ModalBody>
+                      <ModalFooter>
+                        
+                      </ModalFooter>
+                    </Modal>
+                  <Link to = "#"  onClick = {this.deleteSubCategory.bind(this,e._id)}  > <i className="fa fa-trash"></i></Link> </div> 
+        });
+      }
+    }
 })
 //  console.log('Hello',body);
 const onSortFunction = {

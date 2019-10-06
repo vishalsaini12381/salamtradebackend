@@ -86,15 +86,15 @@ class Mywishlistdetail extends React.Component{
                  <div className="breadcrumbs">
                       <div className="row">
                           <ul>
-                            <li className="home"> <a href="#" title="Go to Home Page">Home</a><span>/</span></li>
+                            <li className="home"> <a href="/" title="Go to Home Page">Home</a><span>/</span></li>
                             <li className="home"> My Account <span>/</span></li>
                             <li className="category13"> My Wishlist</li>
                           </ul>
                       </div>
                   </div>
                   <div className="productcart-fluid">
-                        <table className="table table-striped">
-                          <tbody>
+                    {
+                      (this.state.myWishlist[0]) ?   <table className="table table-striped">  <tbody>
                           {
                               this.state.myWishlist.map((e,i)=>{
                                 return(
@@ -133,6 +133,8 @@ class Mywishlistdetail extends React.Component{
                             
                           </tbody>
                         </table>
+                        : <h4 style={{padding: '93px 260px'}}>Your wishlist is empty.</h4>
+                    }
                   </div>
                   <div className="continueshopping">
                     <div className="row">

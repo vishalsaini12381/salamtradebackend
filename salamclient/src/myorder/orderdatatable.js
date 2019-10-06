@@ -73,17 +73,20 @@ const body = [
   
 ];
 
-this.state.myOrders.map((e,i)=>{
-  var obj={
-      "orderid":e._id,
-      "email":e.userId.email,
-      "amount":e.price,
-      "shippingamount":e.shippingCharges,
-      "total":e.amount,
-      "view":"View"
-  }
-  body.push(obj);
-})
+if(this.state.myOrders){
+  this.state.myOrders.map((e,i)=>{
+    var obj={
+        "orderid":e._id,
+        "email":e.userId.email,
+        "amount":e.price,
+        "shippingamount":e.shippingCharges,
+        "total":e.amount,
+        "view":"View"
+    }
+    body.push(obj);
+  })
+}
+
 
  
 const onSortFunction = {

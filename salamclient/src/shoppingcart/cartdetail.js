@@ -54,7 +54,7 @@ class Cartdetail extends React.Component{
     }else{
       swal({
         title: "OOPS",
-        text: "Session expired.Please Login!",
+        text: "First you have to login!",
         icon: "warning",
         dangerMode: true,
         closeOnClickOutside: false,

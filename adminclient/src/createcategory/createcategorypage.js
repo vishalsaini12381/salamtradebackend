@@ -103,7 +103,7 @@ class Createsubcategorypage extends React.Component{
         <div className="my-3 my-md-5">
           <div className="container">
             <div className="page-header">
-              <h4 className="page-title">Create  Category</h4>
+              {/* <h4 className="page-title">Create  Category</h4> */}
               <ol className="breadcrumb">
                 <li className="breadcrumb-item"><a href="/Dashboard">Home</a></li>
                 <li className="breadcrumb-item active" aria-current="page">Create  Category</li>

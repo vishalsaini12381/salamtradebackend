@@ -224,7 +224,7 @@ class Addressdetail extends React.Component{
                     // this.state.isChecked=this.state.isChecked+1;
                     return(
                       <div className="col-sm-6" onClick={() => this.selectAddress(e._id)}>
-                        <h4>Saved Address {this.state.isChecked}</h4>
+                        {/* <h4>Saved Address {this.state.isChecked}</h4> */}
                         <div className="addresss" id={e._id}>
                         <h2>{e.fullName}</h2>
                         <p>{e.address}</p>

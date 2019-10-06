@@ -28,7 +28,7 @@ class BusinessDataTable extends Component{
       this.toggle = this.toggle.bind(this);
       this.handleBusinessCategoryChange = this.handleBusinessCategoryChange.bind(this);
       // this.handleChange = this.handleChange.bind(this);
-      this._handleChange = this._handleChange.bind(this);
+      // this._handleChange = this._handleChange.bind(this);
     
       };
     
@@ -47,12 +47,29 @@ class BusinessDataTable extends Component{
 
       
 
-      _handleChange (e) {
-        this.setState( { isChecked: !this.state.isChecked } );
-          let obj = {};
-          obj.businesscategoryId = e;
-          obj.isChecked = !this.state.isChecked;
-          console.log('ObjectChange',obj);
+      changeStatus(e,id,status,name) {
+          console.log('ObjectChange',id+'/'+status+'/'+name);
+        if(status==true || status=='true'){
+          status=false;
+        }else{
+          status=true;
+        }
+        const obj = {
+          businessId: id,
+          businesscategory:name,
+          status : status,
+        };
+
+        axios.post(URL+'/api/admin/updateBusinessCategory/'+id,obj)
+            .then(function(response){
+                console.log('response',response);
+                if(response.data.status === true){
+                    window.location = '/businesscategory';
+                }  
+                else{
+                    alert(response.data.message);
+                }
+            });
         }
       
 
@@ -133,7 +150,7 @@ class BusinessDataTable extends Component{
             const obj = {
               businessId: this.state.businessId,
               businesscategory: this.state.businesscategory,
-              checked : this.state.checked,
+              checked : this.state.isChecked,
             };
             console.log(']]]]]]]]]]]]]]]]]]]]]]]]]',obj);
             axios.post(URL+'/api/admin/updateBusinessCategory/'+this.state.businessId,obj)
@@ -141,7 +158,7 @@ class BusinessDataTable extends Component{
                 console.log('response',response);
                 if(response.data.status === true){
                     alert(response.data.message);
-                    window.location = '/businesscategory';
+                    //window.location = '/businesscategory';
                 }  
                 else{
                     alert(response.data.message);
@@ -185,6 +202,12 @@ const header = [
 let state = this.state;
 const body = [];
   state.businessList.map((e,i)=>{
+    var  isCheck='';
+    if(e.status==true || e.status=='true'){
+      isCheck="checked";
+    }else{
+      isCheck="";
+    }
     body.push({
      'category':e.businesscategory,
      'status': 
@@ -202,7 +225,7 @@ const body = [];
     //    </div>
       <div>
       <label class="switch">
-      <input id="on" type="checkbox" value = {this.state.isChecked} onChange={ this._handleChange.bind(this,e._id) }  />
+      <input id="on" type="checkbox"  checked={isCheck} value = {this.state.isChecked} onClick={()=> this.changeStatus(this,e._id,e.status,e.businesscategory) }  />
       <div class="slider round"></div>
     </label>
     <p id="info"></p>

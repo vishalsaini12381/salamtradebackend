@@ -90,7 +90,7 @@ class BrandDataTable extends Component{
 
           deleteBrand(e){
             swal({
-              title: "Are you sure want to Delete?",
+              title: "Are you sure you want to Delete?",
               // text: "Once deleted, you will not be able to recover this imaginary file!",
               icon: "warning",
               buttons: true,
@@ -100,15 +100,16 @@ class BrandDataTable extends Component{
                 axios.post(URL+'/api/admin/deleteBrand',{
                   brandId: e,
                 }).then(res=>{
-                  swal("Proof! Your imaginary data has been deleted!",{
-                    icon:"success",
-                  });
-                })
-                setTimeout(function(){
+                  // swal("Proof! Your imaginary data has been deleted!",{
+                  //   icon:"success",
+                  // });
                   return window.location = '/createBrand';
-                },2000)
+                })
+                // setTimeout(function(){
+                //   return window.location = '/createBrand';
+                // },2000)
               }else{
-                swal("Your imaginary file is safe!");
+               // swal("Your imaginary file is safe!");
               }
             });
            }

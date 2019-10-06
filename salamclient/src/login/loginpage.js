@@ -137,7 +137,7 @@ class Loginpage extends React.Component{
                                       </div>
                                     </form>
                                     <div className="anotherlink">
-                                    <p>Don't Have an Account <a href="/Signup">Signup Here</a></p>
+                                    <p style={{color:'#1b1111'}}>Don't Have an Account <a href="/Signup" style={{color:'#2480fe'}}>Signup Here</a></p>
                                     </div>
                                </div>
                             </div>

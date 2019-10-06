@@ -31,11 +31,12 @@ class Sidebar extends React.Component{
               <ul>
                 <li className="current"><a href="#">My Profile </a></li>
                 <li><a href="myOrders">My Order</a></li>
+                <li><a href="/Mywishlist">My Wishlist</a></li>
                 <li><a href="#">Setting</a></li>
                 <li><a>Sell With Us</a></li>
                 <li><a>About Us</a></li>
                 <li><a>Help & Support</a></li>
-                <li><a>Privacy Ploicy</a></li>
+                <li><a>Privacy Policy</a></li>
                 <li><a>Term & Condition</a></li>
                 <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
               </ul>

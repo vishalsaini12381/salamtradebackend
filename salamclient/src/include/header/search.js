@@ -11,8 +11,13 @@ class Search extends React.Component{
     super(props)
     this.state={
         search: '',
+        businesscategoryList : [],
     };
     this.searchJob = this.searchJob.bind(this);
+  }
+
+  componentWillMount(){
+    this.fetchBusinessCategory();
   }
 
   searchJob(event){
@@ -31,6 +36,18 @@ class Search extends React.Component{
             }
         })
     }
+}
+
+fetchBusinessCategory(){
+  axios.post(URL+'/api/user/fetchBusinesscategory').then((response)=>{
+    console.log('BusinessCategoryList',response.data.data);      
+    if(response){
+      this.setState({
+        businesscategoryList : response.data.data,
+        // businessCatData : response.data.business
+      })
+    }
+  })
 }
 
 	render()
@@ -69,13 +86,13 @@ class Search extends React.Component{
             <form>
               <select name="category_id" className="cate-dropdown hidden-xs">
                 <option value="0">All Categories</option>
-                <option value="36">Honey</option>
-                <option value="37">Honey Products</option>
-                <option value="38">Bee Products</option>
-                <option value="39">Sweets and Desserts</option>
-                <option value="40">Food Supplement</option>
-                <option value="41">Neutraceutical</option>
-                <option value="41">Halal Food</option>
+                {
+                  this.state.businesscategoryList.map((e,i)=>{
+                    return (
+                    <option value={e.business_id}>{e.business_name}</option>
+                    )
+                  })
+                }
               </select>
               {/* <input type="text" placeholder="Search Products " value="" maxlength="70" className="" name="search" id="search"/> */}
               <SearchField

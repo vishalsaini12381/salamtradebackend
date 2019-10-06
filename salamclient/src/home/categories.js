@@ -2,10 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import './categories.css';
-import Carousel from "react-multi-carousel";
+
 import "react-multi-carousel/lib/styles.css";
 import Slid from '../Slid';
 import Loader from 'react-loader-spinner'
+
+
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import './newproduct.css';
+
+
 const URL = process.env.REACT_APP_LOCAL;
 
 
@@ -37,89 +44,68 @@ class Categories extends React.Component{
   }
  
  	render(){
-    console.log('44444444444444444444444444',this.state.productList)
+    
     const responsive = {
+      superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5,
+      },
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
         items: 5,
-        slidesToSlide: 1, // optional, default to 1.
       },
       tablet: {
         breakpoint: { max: 1024, min: 464 },
         items: 2,
-        slidesToSlide: 2, // optional, default to 1.
       },
       mobile: {
         breakpoint: { max: 464, min: 0 },
         items: 1,
-        slidesToSlide: 1, // optional, default to 1.
       },
     };
+
+
 		return(
-<div> 
-   <section className="main-container col1-layout home-content-container categories-fluid">
-    <div className="container">
-    <Loader visible = {this.state.visible} type="Puff" className="signuploader" />
-      <div className="std">
-        <div className="best-seller-pro wow bounceInUp animated">
-          <div className="slider-items-products">
-            <div className="new_title center">
-            <div className="new_title center">
-              <h2>Product's</h2>
-            </div>
-            <br/>
-            <Carousel
-            swipeable={true}
-            draggable={true}
-            showDots={true}
-            responsive={responsive}
-            ssr={true} // means to render carousel on server-side.
-            infinite={true}
-            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-            autoPlaySpeed={2000}
-            keyBoardControl={true}
-            customTransition="all .5"
-            transitionDuration={500}
-            containerClass="carousel-container"
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            deviceType={this.props.deviceType}
-            dotListClass="custom-dot-list-style"
-            itemClass="carousel-item-padding-40-px"
-          >
-             {
+<div className="container-fluid newproduct-fluid">
+         <div className="container">
+             <div className="headingpart">
+                  <h2>New  Products</h2>
+             </div>
+              <Carousel responsive={responsive}>
+
+              {
           this.state.productList.map((e,i)=>{
             return(
-              <React.Fragment key = {i}>
-            <div className="categoryslider">
-              <div className="sliderimage">
-                  <a href={"Productdetail?product="+e._id}><img style = {{width : '198px',height:'249px'}} src =  {e.file1} /></a>
-              </div>
-              <div className="categoryname">
-                  <a title=" Sample Product" href="#"></a>
-                </div>
-            </div>
-            </React.Fragment>
-      )
+
+                 <div className="mutlislider">
+                   <div className="productimage">
+                   <a href={"Productdetail?product="+e._id}><img src= {e.file1} alt="product 1" /></a>
+                   <a href={'Productdetail?product='+e._id}><div className="viewproduct"><i className="fa fa-shopping-cart"></i> Add to Cart </div></a>
+                    </div>
+                    <h3>{e.productName}</h3>
+                    <h4><span>${e.productPrice}</span> ${((e.productPrice)-(e.productPrice)*(e.discount)/100)}</h4>
+                   {/* <div className="wishlist"><Link to="" title="wishlist"><i class="fa fa-heart"></i></Link></div> */}
+                   {/* <div className="size">
+                     <span>Size: </span>
+                     <ul>
+                        <li>S</li>
+                        <li>M</li>
+                        <li>L</li>
+                        <li>XL</li>
+                        <li>XXL</li>
+                     </ul>
+                   </div> */}
+                 </div>
+)
     })
   }
-      {/* <div className="categoryslider">
-         <div className="sliderimage">
-            <img style = {{width : '198px',height:'249px'}} src = "./images/categories/2.png"/>
+
+
+
+               
+              </Carousel>
          </div>
-         <div className="categoryname">
-            <a title=" Sample Product" href="#"></a>
-          </div>
-      </div> */}
-</Carousel>
-</div>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
-
-
-  </div>
 
 			)
 	}

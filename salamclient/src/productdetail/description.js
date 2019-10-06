@@ -70,14 +70,14 @@ class Description extends React.Component{
     }else{
       swal({
         title: "OOPS",
-        text: "Some error found.",
+        text: response.data.message,
         icon: "warning",
         dangerMode: true,
         closeOnClickOutside: false,
       }).then((d)=>{
          //console.log('ddddddddddddddddddd',d)
           if(d){
-          return window.location = "/Login"
+          //return window.location = "/Login"
         }
        })
     }
@@ -157,7 +157,7 @@ onClickDiv = (column) => {
                   </div>
                   <div className="price-block">
                     <div className="price-box">
-                    <p className="special-price"> <span className="price-label">Special Price</span> <span className="price"> ${this.state.productDetail['productPrice']} </span> </p>
+                    <p className="special-price"> <span className="price-label">Special Price</span> <span className="price"> ${(this.state.productDetail['productPrice']-(this.state.productDetail['productPrice']*this.state.productDetail['discount']/100))} </span> </p>
                       <p className="old-price"> <span className="price-label">Regular Price:</span> <span className="price"> ${this.state.productDetail['productPrice']} </span> </p>
                       
                     </div>

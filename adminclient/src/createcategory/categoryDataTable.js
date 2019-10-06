@@ -87,7 +87,7 @@ class CategoryDataTable extends Component{
 
           deleteCategory(e){
             swal({
-              title: "Are you sure?",
+              title: "Are you sure you want to delete?",
               text: "Once deleted, you will not be able to recover this imaginary file!",
               icon: "warning",
               buttons: true,
@@ -105,7 +105,7 @@ class CategoryDataTable extends Component{
                   return window.location = '/category';
                 },2000)
               }else{
-                swal("Your imaginary file is safe!");
+               // swal("Your imaginary file is safe!");
               }
             });
            }
@@ -122,7 +122,8 @@ const header = [
 let state = this.state;
 const body = [];
   state.categoryList.map((e,i)=>{
-       console.log('FFFFFFFFFF',e);
+       console.log('FFFFFFFFFF',e.businessId[0]);
+if(e.businessId[0]){
       body.push({
      'businesscategory':e.businessId[0].businesscategory,
      'category' : e.category,
@@ -155,7 +156,9 @@ const body = [];
             
           </ModalFooter>
         </Modal>
-       <Link to = "#"  onClick = {this.deleteCategory.bind(this,e._id)}  > <i className="fa fa-trash"></i></Link> </div>  });
+       <Link to = "#"  onClick = {this.deleteCategory.bind(this,e._id)}  > <i className="fa fa-trash"></i></Link> </div>  
+       });
+      }
 })
  console.log('Hello',body);
 const onSortFunction = {

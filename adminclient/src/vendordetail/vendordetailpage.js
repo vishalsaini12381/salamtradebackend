@@ -207,7 +207,7 @@ class Vendordetailpage extends React.Component{
                               </tr>
                               <tr>
                                 <td>
-                               <select className="form-control custom-select" name = "status" value = {state.status.value} onChange = {this.handleChangeStatus}>
+                               <select className="form-control custom-select" name = "status" value = {this.props.adminStatus} onChange = {this.handleChangeStatus}>
                                {/* <option value = '' ></option> */}
                                   <option>Unverify</option>
                                   <option>Verify</option>
